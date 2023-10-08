@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Widget from "./Widget";
+import DroppedWidget from "./DroppedWidget";
 
 export default function DragAndDrop() {
   // State to keep track of dropped widgets
@@ -31,36 +33,24 @@ export default function DragAndDrop() {
       <h2>Drop elements: </h2>
       {/* Container for draggable widgets */}
       <div className="widgets">
-        <div
-          className="widget"
-          draggable
-          onDragStart={(e) => handleOnDrag(e, "Widget A")} // Set the widget type when dragging
-        >
+        <Widget draggable onDragStart={(e) => handleOnDrag(e, "Widget A")}>
           Widget A
-        </div>
-        <div
-          className="widget"
-          draggable
-          onDragStart={(e) => handleOnDrag(e, "Widget B")}
-        >
+        </Widget>
+        <Widget draggable onDragStart={(e) => handleOnDrag(e, "Widget B")}>
           Widget B
-        </div>
-        <div
-          className="widget"
-          draggable
-          onDragStart={(e) => handleOnDrag(e, "Widget C")}
-        >
+        </Widget>
+        <Widget draggable onDragStart={(e) => handleOnDrag(e, "Widget C")}>
           Widget C
-        </div>
+        </Widget>
+        <Widget draggable onDragStart={(e) => handleOnDrag(e, "Widget D")}>
+          Widget D
+        </Widget>
       </div>
       {/* Container where widgets can be dropped */}
       <h2>Dragzone:</h2>
       <div className="page" onDrop={handleOnDrop} onDragOver={handleDragOver}>
-        {/* Display the dropped widgets */}
         {widgets.map((widget, index) => (
-          <div className="dropped-widget" key={index}>
-            {<div className="widget">{widget}</div>}
-          </div>
+          <DroppedWidget>{widget}</DroppedWidget>
         ))}
       </div>
     </>
